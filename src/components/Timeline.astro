@@ -1,0 +1,18 @@
+---
+import type { Entry } from '../data/parcours';
+
+interface Props {
+  entries: Entry[];
+}
+const { entries } = Astro.props;
+---
+<div class="timeline">
+  {entries.map((e) => (
+    <div class:list={['item glass reveal', { hl: e.highlight }]}>
+      <div class="date">{e.date}</div>
+      <h3>{e.title}</h3>
+      <div class="place">{e.place}</div>
+      <p>{e.text}</p>
+    </div>
+  ))}
+</div>

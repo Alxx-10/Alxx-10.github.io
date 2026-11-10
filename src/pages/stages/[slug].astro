@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import Fiche from '../../components/Fiche.astro';
+
+export async function getStaticPaths() {
+  const stages = await getCollection('stages');
+  return stages.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Fiche entry={entry} backHref={`${base}/stages`} backLabel="Toutes les missions" />

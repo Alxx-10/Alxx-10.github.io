@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Contact — Alexis Leclerc" description="Contacter Alexis Leclerc, technicien systèmes & réseaux passionné d'IA, disponible pour un emploi.">
+  <header class="pagehead wrap">
+    <div class="eyebrow">Contact</div>
+    <h1>Travaillons ensemble</h1>
+    <p class="lead">Je recherche un emploi où je pourrai mettre l'intelligence artificielle au cœur de mon travail, en m'appuyant sur mon expérience en systèmes et réseaux. Basé à la frontière, à quelques minutes de Genève, je recherche en priorité un poste en Suisse, et reste ouvert à la France voisine.</p>
+  </header>
+  <div class="wrap contactgrid">
+    <a class="glass cat" href={`mailto:${profile.email}`}><div class="ico">✉️</div><b>Email</b><span>{profile.email}</span></a>
+    <a class="glass cat" href={profile.linkedin} target="_blank" rel="noopener"><div class="ico">💼</div><b>LinkedIn</b><span>Alexis Leclerc</span></a>
+    <a class="glass cat" href={profile.github} target="_blank" rel="noopener"><div class="ico">💻</div><b>GitHub</b><span>Alxx-10</span></a>
+    <a class="glass cat" href={`${base}/cv-alexis-leclerc.pdf`} target="_blank" rel="noopener"><div class="ico">📄</div><b>Curriculum vitae</b><span>Télécharger le PDF</span></a>
+  </div>
+</Base>

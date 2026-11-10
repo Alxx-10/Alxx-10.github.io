@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import photo from '../assets/images/photo.png';
+import { profile, skills } from '../data/profile';
+import { certifications } from '../data/veille';
+
+const stats = [
+  [(await getCollection('projets')).length, 'projets'],
+  [(await getCollection('stages')).length, 'missions'],
+  [certifications.length, 'certifications'],
+] as const;
+---
+<div class="profile reveal">
+  <div class="profile-top">
+    <Image class="photo" src={photo} alt="Photo d'Alexis Leclerc" width={176} height={176} quality={80} loading="eager" />
+    <div>
+      <h2>{profile.name}</h2>
+      <p class="role">{profile.title}</p>
+      <p class="loc">📍 {profile.location}</p>
+    </div>
+  </div>
+  <div class="stats">
+    {stats.map(([n, label]) => <div class="stat"><b>{n}</b><span>{label}</span></div>)}
+  </div>
+  <div class="tags">
+    {skills.map((s) => <span class:list={{ ai: s.name === 'Intelligence artificielle' }}>{s.name}</span>)}
+  </div>
+</div>

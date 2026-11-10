@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+
+const groups = [
+  ['ateliers', 'Ateliers professionnels'],
+  ['b1', 'Activités B1'],
+  ['e5', 'Épreuve E5 — projets en groupe de 4'],
+] as const;
+const projets = (await getCollection('projets')).sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Projets — Alexis Leclerc" description="Projets techniques d'Alexis Leclerc : serveurs, réseaux Cisco, Active Directory, GLPI, audit de sécurité.">
+  <header class="pagehead wrap">
+    <div class="eyebrow">Projets</div>
+    <h1>Mes réalisations techniques</h1>
+    <p class="lead">Ateliers professionnels, activités B1 et projets de l'épreuve E5. Chaque fiche détaille la démarche et les compétences mobilisées.</p>
+  </header>
+  <section>
+    <div class="wrap">
+      {groups.map(([key, label]) => {
+        const items = projets.filter((p) => p.data.group === key);
+        return items.length > 0 && (
+          <div class="group">
+            <h2 class="gt">{label}</h2>
+            <div class="grid">
+              {items.map((p) => (
+                <Card code={p.data.code} title={p.data.title} summary={p.data.summary} cover={p.data.cover} href={`${base}/projets/${p.id}`} />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+</Base>

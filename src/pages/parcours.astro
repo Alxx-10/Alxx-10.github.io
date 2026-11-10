@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Timeline from '../components/Timeline.astro';
+import { etudes, experiences } from '../data/parcours';
+---
+<Base title="Parcours — Alexis Leclerc" description="Formation et expériences d'Alexis Leclerc : BTS SIO, Licence ISITECH, RGF Staffing et autoformation en intelligence artificielle.">
+  <header class="pagehead wrap">
+    <div class="eyebrow">Parcours</div>
+    <h1>Formation & expériences</h1>
+    <p class="lead">Du bac pro Systèmes Numériques à la licence, puis un an en poste : un socle technique solide, prolongé aujourd'hui par une autoformation en intelligence artificielle.</p>
+  </header>
+  <section>
+    <div class="wrap">
+      <h2>Expériences</h2>
+      <p class="sub">Un an en entreprise et sept stages depuis 2019.</p>
+      <Timeline entries={experiences} />
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <h2>Formation</h2>
+      <p class="sub">Diplômes et apprentissage autodidacte.</p>
+      <Timeline entries={etudes} />
+    </div>
+  </section>
+</Base>

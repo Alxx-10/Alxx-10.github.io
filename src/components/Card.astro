@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  code: string;
+  title: string;
+  summary: string;
+  href: string;
+  cover: ImageMetadata;
+}
+const { code, title, summary, href, cover } = Astro.props;
+---
+<a class="card reveal" href={href}>
+  <div class="thumb"><Image src={cover} alt="" width={640} quality={70} /></div>
+  <div class="body">
+    <div class="code">{code}</div>
+    <h3>{title}</h3>
+    <p>{summary}</p>
+    <div class="more">Voir le détail →</div>
+  </div>
+</a>

@@ -1,0 +1,43 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { competences } from '../data/competences';
+
+interface Props {
+  entry: CollectionEntry<'projets'> | CollectionEntry<'stages'>;
+  backHref: string;
+  backLabel: string;
+}
+const { entry, backHref, backLabel } = Astro.props;
+const { Content } = await render(entry);
+const { code, title, summary, cover, gallery } = entry.data;
+---
+<Base title={`${code} — ${title} | Alexis Leclerc`} description={summary}>
+  <article class="wrap fiche">
+    <a class="back" href={backHref}>← {backLabel}</a>
+    <div class="eyebrow">{code}</div>
+    <h1>{title}</h1>
+    <p class="lead">{summary}</p>
+
+    <div class="fiche-grid">
+      <div class="prose glass"><Content /></div>
+      <aside class="glass comp">
+        <h2>Compétences mobilisées</h2>
+        {entry.data.competences.map((k) => (
+          <div>
+            <h3>{competences[k].title}</h3>
+            <ul>{competences[k].items.map((i) => <li>{i}</li>)}</ul>
+          </div>
+        ))}
+      </aside>
+    </div>
+
+    <h2 class="gal-title">Captures</h2>
+    <div class="gal">
+      {[cover, ...gallery].map((img) => (
+        <a href={img.src} target="_blank" rel="noopener"><Image src={img} alt={`Capture — ${title}`} width={800} quality={75} /></a>
+      ))}
+    </div>
+  </article>
+</Base>

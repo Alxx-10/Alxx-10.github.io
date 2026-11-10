@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+
+const groups = [
+  ['annee1', 'Stage de 1ʳᵉ année — mai à juin 2022'],
+  ['annee2', 'Stage de 2ᵉ année — janvier à février 2023'],
+] as const;
+const stages = (await getCollection('stages')).sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Stages — Alexis Leclerc" description="Missions de stage d'Alexis Leclerc chez PLANIFIQUE : réseau, Salesforce, PDF interactif, support.">
+  <header class="pagehead wrap">
+    <div class="eyebrow">Stages BTS</div>
+    <h1>Mes missions chez PLANIFIQUE</h1>
+    <p class="lead">Deux stages de 6 semaines à Grand-Saconnex (Suisse), dans une entreprise spécialisée dans la retraite des frontaliers France-Suisse : un projet réseau d'envergure et des missions avec les différents services.</p>
+  </header>
+  <section>
+    <div class="wrap">
+      {groups.map(([key, label]) => (
+        <div class="group">
+          <h2 class="gt">{label}</h2>
+          <div class="grid">
+            {stages.filter((s) => s.data.group === key).map((s) => (
+              <Card code={s.data.code} title={s.data.title} summary={s.data.summary} cover={s.data.cover} href={`${base}/stages/${s.id}`} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

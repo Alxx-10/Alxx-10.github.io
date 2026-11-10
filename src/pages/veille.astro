@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { outils, captures, certifications } from '../data/veille';
+---
+<Base title="Veille & certifications — Alexis Leclerc" description="Veille technologique en cybersécurité et IA, et certifications d'Alexis Leclerc : ANSSI, PIX, CNIL, OpenClassrooms.">
+  <header class="pagehead wrap">
+    <div class="eyebrow">Veille & certifications</div>
+    <h1>Apprendre en continu</h1>
+    <p class="lead">Me former par moi-même fait partie de mon quotidien : une veille régulière en cybersécurité et en intelligence artificielle, et des certifications pour valider mes acquis.</p>
+  </header>
+  <section>
+    <div class="wrap">
+      <h2>Veille technologique</h2>
+      <p class="sub">Mes outils pour rester à jour.</p>
+      <div class="grid">
+        {outils.map((o) => (
+          <div class="card reveal" style="cursor:default">
+            <div class="thumb"><Image src={o.image} alt="" width={640} quality={70} /></div>
+            <div class="body"><h3>{o.name}</h3><p>{o.text}</p></div>
+          </div>
+        ))}
+      </div>
+      <div class="gal">
+        {captures.map((img) => (
+          <a href={img.src} target="_blank" rel="noopener"><Image src={img} alt="Capture de mon espace Inoreader" width={800} quality={75} /></a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <h2>Certifications</h2>
+      <p class="sub">Obtenues pendant mon BTS.</p>
+      <div class="certs">
+        {certifications.map((c) => (
+          <div class="cert glass reveal">
+            <div class="ico" aria-hidden="true">{c.icon}</div>
+            <div><b>{c.name}</b><span>{c.org}</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

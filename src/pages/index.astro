@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import ProfileCard from '../components/ProfileCard.astro';
+import { profile, ai } from '../data/profile';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const rubriques = [
+  ['/parcours', '🎓', 'Parcours', 'Un an en poste, une licence, un BTS et sept stages.'],
+  ['/projets', '🛠️', 'Projets', 'Serveurs, réseaux Cisco, Active Directory, audit de sécurité.'],
+  ['/stages', '🏢', 'Stages', 'Cinq missions chez PLANIFIQUE, du réseau à l’automatisation.'],
+  ['/veille', '🔎', 'Veille & certifications', 'Apprendre en continu : veille, ANSSI, PIX, CNIL.'],
+] as const;
+---
+<Base title="Alexis Leclerc — Technicien systèmes & réseaux passionné d'IA" description={profile.intro}>
+  <div class="wrap hero">
+    <div>
+      <span class="pill"><i></i>{profile.status}</span>
+      <h1>Je veux faire de <span class="grad">l'IA</span> mon métier.</h1>
+      <p class="lead">Je suis <strong>Alexis Leclerc</strong>, technicien systèmes & réseaux confirmé. Je me forme à l'IA en autodidacte, chaque jour, et je mets mon socle technique au service de projets concrets.</p>
+      <div class="btns">
+        <a class="btn primary" href={`${base}/contact`}>Me contacter →</a>
+        <a class="btn" href={`${base}/cv-alexis-leclerc.pdf`} target="_blank" rel="noopener">Télécharger mon CV</a>
+      </div>
+    </div>
+    <ProfileCard />
+  </div>
+
+  <section id="ia">
+    <div class="wrap">
+      <div class="eyebrow">Mon objectif</div>
+      <h2>L'intelligence artificielle, appris par moi-même</h2>
+      <p class="sub ia-pitch">{ai.pitch}</p>
+
+      <div class="ia-grid">
+        {ai.domains.map((d) => (
+          <div class="glass ia-card reveal">
+            <div class="ico" aria-hidden="true">{d.icon}</div>
+            <h3>{d.title}</h3>
+            <p>{d.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="ia-bottom">
+        <div class="glass ia-tools reveal">
+          <h3>Mes outils IA au quotidien</h3>
+          <div class="tags">{ai.tools.map((t) => <span>{t}</span>)}</div>
+        </div>
+        <div class="glass ia-approach reveal">
+          <h3>Ma démarche d'autodidacte</h3>
+          <ol>
+            {ai.approach.map((a) => <li><b>{a.title}</b><span>{a.text}</span></li>)}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Explorer</div>
+      <h2>Mon socle technique</h2>
+      <p class="sub">Ce qui me permet de déployer l'IA proprement : systèmes, réseaux et cybersécurité, en formation comme en entreprise.</p>
+      <div class="cats">
+        {rubriques.map(([href, icon, title, text]) => (
+          <a class="cat glass reveal" href={`${base}${href}`}>
+            <div class="ico" aria-hidden="true">{icon}</div>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <div class="arrow">Voir →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Vous cherchez un profil motivé par l'IA ?</h2>
+      <p>Disponible dès maintenant, en priorité en Suisse.</p>
+      <a class="btn" href={`${base}/contact`}>Me contacter →</a>
+    </div>
+  </div>
+</Base>
