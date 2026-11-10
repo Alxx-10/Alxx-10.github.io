@@ -40,7 +40,7 @@
   - Vérif : `npm run build` puis inspection de `dist/`.
   - Fichiers : `astro.config.mjs`, `src/layouts/Base.astro`, `public/favicon.svg`
 
-- [ ] 8b. Contenu depuis 2023 et photo (données saisies dans `src/data/`, photo rangée ; reste l'affichage)
+- [x] 8b. Contenu depuis 2023 et photo (données saisies dans `src/data/`, photo rangée ; reste l'affichage)
   - Acceptation : Licence ISITECH, RGF Staffing, intérim + autoformation IA affichés ; photo dans la carte de profil ; accroche « recherche d'emploi ».
   - Vérif : relecture par Alexis.
   - Fichiers : `src/data/*.ts`, `src/content/**`, `src/components/ProfileCard.astro`, `src/assets/images/photo.jpg`
@@ -50,7 +50,7 @@
   - Vérif : `npm run test:e2e` ; rapport Lighthouse.
   - Fichiers : `playwright.config.ts`, `tests/e2e/*.spec.ts`
 
-- [ ] 10. Déploiement GitHub Pages (avec accord d'Alexis)
+- [x] 10. Déploiement GitHub Pages (en ligne sur https://alxx-10.github.io, 25 tests OK en ligne)
   - Acceptation : workflow GitHub Actions qui build et publie sur Pages ; site accessible à l'adresse finale.
   - Vérif : ouvrir l'URL publique, relancer les tests e2e dessus.
   - Fichiers : `.github/workflows/deploy.yml`, `astro.config.mjs`
